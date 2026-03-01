@@ -4,6 +4,11 @@ out/
 !**/src/test/**/out/
 .idea/
 
+### Claude ###
+CLAUDE.md
+prompts/
+
+
 ### Kotlin ###
 .kotlin
 
