@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Kotlin learning/sandbox project. Each lesson is a self-contained terminal app in its own package under `src/main/kotlin/`.
+Kotlin learning/sandbox project. 
 
 - **Lesson 1** (`lesson1`) — CLI chat with GigaChat API, stores dialog history, supports runtime parameter changes.
 
