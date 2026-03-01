@@ -1,4 +1,4 @@
-package lesson1
+package gigachat
 
 import kotlinx.coroutines.runBlocking
 import java.io.File
@@ -35,15 +35,18 @@ class GigaChatCLI {
     }
 
     private suspend fun sendMessage(session: GigaChatSession, line: String, client: GigaChatClient) {
+        val checkpoint = session.historySize()
         session.addUserMessage(line)
-        runCatching { client.chat(session) }
+        runCatching {
+            client.chat(session, listOf(CurrencyTools.functionDef), CurrencyTools::execute)
+        }
             .onSuccess { reply ->
                 session.addAssistantMessage(reply)
                 println("GigaChat: $reply")
                 println()
             }
             .onFailure { e ->
-                session.removeLastMessage()
+                session.revertHistory(checkpoint)
                 println("Error: ${e.message}")
                 println()
             }
