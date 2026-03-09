@@ -1,9 +1,9 @@
 package lesson2
 
+import gigachat.GigaChatClient
+import gigachat.GigaChatSession
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.*
-import lesson1.GigaChatClient
-import lesson1.GigaChatSession
 import java.io.File
 import java.util.Properties
 
