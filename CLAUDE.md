@@ -6,14 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Kotlin learning/sandbox project. 
 
-- **Lesson 1** (`lesson1`) — CLI chat with GigaChat API, stores dialog history, supports runtime parameter changes.
+- **Lesson 1** (`gigachat`) — CLI chat with GigaChat API, stores dialog history, supports runtime parameter changes, function calling (convert_currency).
 
 ## Build & Run
 
 The project uses **Gradle** (Kotlin DSL). Open in IntelliJ IDEA and let it sync, or use a locally installed Gradle.
 
 ```sh
-# Run lesson1 (requires credentials.properties in project root)
+# Run gigachat (requires credentials.properties in project root)
 ./gradlew run
 
 # Build fat jar
@@ -46,10 +46,13 @@ auth_key=<Base64-encoded client_id:client_secret>
 ## Architecture — Lesson 1
 
 ```
-Main.kt          — REPL loop, command parsing (/model, /temp, /system, /quit)
-ChatSession.kt   — holds conversation history + current model/temperature/systemPrompt
-                   buildMessages() injects the system prompt as the first message each call
-GigaChatClient.kt — Ktor HTTP client; caches OAuth token, refreshes 60 s before expiry
+Main.kt            — entry point
+GigaChatCLI.kt     — REPL loop, command parsing (/model, /temp, /system, /quit)
+GigaChatSession.kt — holds conversation history + model/temperature/systemPrompt
+                     buildMessages() injects system prompt as the first message each call
+GigaChatClient.kt  — Ktor HTTP client; caches OAuth token, refreshes 60 s before expiry
+                     chat() implements function-calling loop (finish_reason=function_call)
+CurrencyTools.kt   — function definition JSON schema + execute() stub (1 USD = 78 RUB)
 ```
 
 SSL verification is disabled in `GigaChatClient` because GigaChat uses a Russian national CA not trusted by the default JVM trust store.

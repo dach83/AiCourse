@@ -1,5 +1,5 @@
-import lesson2.ResumeParserApp
+import gigachat.GigaChatCLI
 
 fun main() {
-    ResumeParserApp().run()
+    GigaChatCLI().run()
 }
