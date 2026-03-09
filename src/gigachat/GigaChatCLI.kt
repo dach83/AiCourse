@@ -1,6 +1,7 @@
 package gigachat
 
 import kotlinx.coroutines.runBlocking
+import lesson2.CurrencyTools
 import java.io.File
 import java.util.*
 

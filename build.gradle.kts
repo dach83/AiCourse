@@ -19,6 +19,9 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:$ktorVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     implementation("org.slf4j:slf4j-simple:2.0.13")
+
+    implementation("io.ktor:ktor-server-cio:3.2.3")
+    implementation("io.modelcontextprotocol:kotlin-sdk-server:0.9.0")
 }
 
 sourceSets {
